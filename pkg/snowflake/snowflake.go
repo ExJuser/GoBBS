@@ -6,15 +6,19 @@ import (
 	"github.com/bwmarrin/snowflake"
 )
 
+// NewSnowflakeNode 新建一个 Snowflake 节点
 func NewSnowflakeNode(startTime string, machineID int64) (*snowflake.Node, error) {
 	var st time.Time
 	var err error
-	st, err = time.Parse(time.DateOnly, startTime) // 修改时间格式
+
+	// 解析开始时间
+	st, err = time.Parse(time.DateOnly, startTime)
 	if err != nil {
 		return nil, err
 	}
-	// 设置时间为较早的时间戳，例如Twitter的Snowflake算法使用的时间
-	snowflake.Epoch = st.UnixNano() / 1e6
+
+	snowflake.Epoch = st.UnixMilli()
+	// 新建一个节点
 	node, err := snowflake.NewNode(machineID)
 	if err != nil {
 		return nil, err
@@ -22,6 +26,7 @@ func NewSnowflakeNode(startTime string, machineID int64) (*snowflake.Node, error
 	return node, nil
 }
 
+// GenerateID 生成唯一 ID
 func GenerateID(node *snowflake.Node) int64 {
 	return node.Generate().Int64()
 }
