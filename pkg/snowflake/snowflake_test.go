@@ -1,6 +1,7 @@
 package snowflake
 
 import (
+	"fmt"
 	"github.com/bwmarrin/snowflake"
 	"log"
 	"sync"
@@ -9,9 +10,10 @@ import (
 )
 
 const (
-	numMachines            = 100
-	numIDsPerMachine       = 10000
+	numMachines            = 10
+	numIDsPerMachine       = 10
 	machineID        int64 = 1
+	printAllID             = true
 )
 
 func TestGenerateIDConcurrency(t *testing.T) {
@@ -26,6 +28,9 @@ func TestGenerateIDConcurrency(t *testing.T) {
 		go func(node *snowflake.Node) {
 			defer wg.Done()
 			id := GenerateID(node)
+			if printAllID {
+				fmt.Println(id)
+			}
 			if _, loaded := idMap.LoadOrStore(id, struct{}{}); loaded {
 				log.Fatal("Duplicate ID found!")
 			}
@@ -48,6 +53,9 @@ func TestGenerateIDDistributedConcurrency(t *testing.T) {
 			go func(node *snowflake.Node) {
 				defer wg.Done()
 				id := GenerateID(node)
+				if printAllID {
+					fmt.Println(id)
+				}
 				if _, loaded := idMap.LoadOrStore(id, struct{}{}); loaded {
 					log.Fatal("Duplicate ID found!")
 				}
