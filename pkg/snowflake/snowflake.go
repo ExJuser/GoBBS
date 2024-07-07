@@ -6,27 +6,18 @@ import (
 	sf "github.com/bwmarrin/snowflake"
 )
 
-// NewSnowflakeNode 新建一个 Snowflake 节点
-func NewSnowflakeNode(startTime string, machineID int64) (*sf.Node, error) {
-	var st time.Time
-	var err error
+var node *sf.Node
 
-	// 解析开始时间
+func Init(startTime string, machineID int64) (err error) {
+	var st time.Time
 	st, err = time.Parse(time.DateOnly, startTime)
 	if err != nil {
-		return nil, err
+		return
 	}
-
 	sf.Epoch = st.UnixMilli()
-	// 新建一个节点
-	node, err := sf.NewNode(machineID)
-	if err != nil {
-		return nil, err
-	}
-	return node, nil
+	node, err = sf.NewNode(machineID)
+	return
 }
-
-// GenerateID 生成唯一 ID
-func GenerateID(node *sf.Node) int64 {
+func GenID() int64 {
 	return node.Generate().Int64()
 }

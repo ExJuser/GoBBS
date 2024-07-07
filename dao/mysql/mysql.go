@@ -15,7 +15,7 @@ func Init(config *setting.MySQLConfig) (err error) {
 	password := config.Password
 	host := config.Host
 	port := config.Port
-	dbname := config.Dbname
+	dbname := config.DbName
 	dsn := fmt.Sprintf("%s:%s@tcp(%s:%d)/%s?charset=utf8mb4&parseTime=True&loc=Local", user, password, host, port, dbname)
 	if db, err = gorm.Open(mysql.Open(dsn), &gorm.Config{}); err != nil {
 		return
