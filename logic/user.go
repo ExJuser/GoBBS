@@ -2,12 +2,13 @@ package logic
 
 import (
 	"GoBBS/dao/mysql"
+	"GoBBS/models"
 	"GoBBS/pkg/snowflake"
 )
 
 //存放业务逻辑代码 可能多次调用dao层服务
 
-func SignUp() {
+func SignUp(p *models.ParamSignUp) {
 	//判断用户是否存在
 	mysql.QueryUserByUsername()
 	//生成UID

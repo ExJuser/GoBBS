@@ -1,6 +1,7 @@
 package main
 
 import (
+	"GoBBS/controller"
 	"GoBBS/dao/mysql"
 	"GoBBS/dao/redis"
 	"GoBBS/logger"
@@ -56,6 +57,10 @@ func main() {
 		return
 	}
 
+	if err := controller.InitTrans("zh"); err != nil {
+		fmt.Printf("init validator trans failed, err:%v\n", err)
+		return
+	}
 	//注册路由
 	r := routers.Setup()
 	if err := r.Run(fmt.Sprintf(":%d", setting.Conf.Port)); err != nil {
