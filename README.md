@@ -7,4 +7,4 @@
 - 配置文件管理：Viper https://github.com/spf13/viper
 - 日志：zap https://github.com/uber-go/zap
 - 鉴权：JWT
-- 参数校验：validator
+- 参数校验：validator https://github.com/go-playground/validator
