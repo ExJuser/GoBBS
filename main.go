@@ -4,6 +4,7 @@ import (
 	"GoBBS/dao/mysql"
 	"GoBBS/dao/redis"
 	"GoBBS/logger"
+	"GoBBS/pkg/snowflake"
 	"GoBBS/routers"
 	setting "GoBBS/settings"
 	"fmt"
@@ -48,6 +49,12 @@ func main() {
 		return
 	}
 	defer redis.Close()
+
+	//初始化雪花算法
+	if err := snowflake.Init(setting.Conf.StartTime, setting.Conf.MachineID); err != nil {
+		fmt.Printf("init snowflake failed, err:%v\n", err)
+		return
+	}
 
 	//注册路由
 	r := routers.Setup()
