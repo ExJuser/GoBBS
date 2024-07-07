@@ -7,6 +7,7 @@
 
 # Test binary, built with `go test -c`
 *.test
+*.yaml
 
 # Output of the go coverage tool, specifically when used with LiteIDE
 *.out
@@ -17,3 +18,4 @@
 .idea
 
 .DS_Store
+/conf/
