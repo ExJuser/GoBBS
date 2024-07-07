@@ -4,6 +4,7 @@ import (
 	"GoBBS/dao/mysql"
 	"GoBBS/dao/redis"
 	"GoBBS/logger"
+	"GoBBS/routers"
 	setting "GoBBS/settings"
 	"fmt"
 	"os"
@@ -22,13 +23,17 @@ func main() {
 		fmt.Printf("init logger failed, err:%v\n", err)
 		return
 	}
-
 	if err := mysql.Init(setting.Conf.MySQLConfig); err != nil {
 		fmt.Printf("init mysql failed, err:%v\n", err)
 		return
 	}
 	if err := redis.Init(setting.Conf.RedisConfig); err != nil {
 		fmt.Printf("init redis failed, err:%v\n", err)
+		return
+	}
+	r := routers.Setup()
+	if err := r.Run(fmt.Sprintf(":%d", setting.Conf.Port)); err != nil {
+		fmt.Printf("run server failed, err:%v\n", err)
 		return
 	}
 }
