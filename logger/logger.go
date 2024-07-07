@@ -17,7 +17,7 @@ import (
 
 var lg *zap.Logger
 
-func Init(config *setting.LogConfig) (err error) {
+func Init(config *setting.LogConfig, mode string) (err error) {
 	encoder := getEncoder()
 	writeSyncer := getLogWriter(config.Filename, config.MaxSize, config.MaxBackups, config.MaxAge)
 	var l = new(zapcore.Level)
@@ -25,7 +25,16 @@ func Init(config *setting.LogConfig) (err error) {
 	if err = l.UnmarshalText([]byte(config.Level)); err != nil {
 		return
 	}
-	core := zapcore.NewCore(encoder, writeSyncer, l)
+	var core zapcore.Core
+	if mode == "dev" { //开发模式 日志同时输出到终端
+		consoleEncoder := zapcore.NewConsoleEncoder(zap.NewDevelopmentEncoderConfig())
+		core = zapcore.NewTee(
+			zapcore.NewCore(encoder, writeSyncer, l),
+			zapcore.NewCore(consoleEncoder, zapcore.Lock(os.Stdout), zapcore.DebugLevel),
+		)
+	} else {
+		core = zapcore.NewCore(encoder, writeSyncer, l)
+	}
 	lg = zap.New(core, zap.AddCaller())
 	zap.ReplaceGlobals(lg)
 	zap.L().Info("init logger success")
