@@ -1,1 +1,4 @@
 {"level":"INFO","time":"2024-07-07T15:25:33.073+0800","caller":"logger/logger.go:31","msg":"init logger success"}
+{"level":"INFO","time":"2024-07-07T15:36:52.975+0800","caller":"logger/logger.go:31","msg":"init logger success"}
+{"level":"INFO","time":"2024-07-07T15:37:15.531+0800","caller":"logger/logger.go:68","msg":"/","status":200,"method":"GET","path":"/","query":"","ip":"::1","user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36","errors":"","cost":0}
+{"level":"INFO","time":"2024-07-07T15:37:15.812+0800","caller":"logger/logger.go:68","msg":"/favicon.ico","status":404,"method":"GET","path":"/favicon.ico","query":"","ip":"::1","user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36","errors":"","cost":0}

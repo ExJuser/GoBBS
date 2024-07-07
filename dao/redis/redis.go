@@ -22,3 +22,7 @@ func Init(config *setting.RedisConfig) (err error) {
 	}
 	return
 }
+
+func Close() {
+	_ = rdb.Close()
+}

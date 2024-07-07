@@ -7,6 +7,7 @@ import (
 	"GoBBS/routers"
 	setting "GoBBS/settings"
 	"fmt"
+	"go.uber.org/zap"
 	"os"
 )
 
@@ -23,14 +24,21 @@ func main() {
 		fmt.Printf("init logger failed, err:%v\n", err)
 		return
 	}
+	defer func(l *zap.Logger) {
+		if err := l.Sync(); err != nil {
+			fmt.Printf("zap sync failed, err:%v\n", err)
+		}
+	}(zap.L())
 	if err := mysql.Init(setting.Conf.MySQLConfig); err != nil {
 		fmt.Printf("init mysql failed, err:%v\n", err)
 		return
 	}
+	defer mysql.Close()
 	if err := redis.Init(setting.Conf.RedisConfig); err != nil {
 		fmt.Printf("init redis failed, err:%v\n", err)
 		return
 	}
+	defer redis.Close()
 	r := routers.Setup()
 	if err := r.Run(fmt.Sprintf(":%d", setting.Conf.Port)); err != nil {
 		fmt.Printf("run server failed, err:%v\n", err)

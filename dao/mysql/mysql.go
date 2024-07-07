@@ -29,3 +29,11 @@ func Init(config *setting.MySQLConfig) (err error) {
 	}
 	return
 }
+
+func Close() {
+	if sqlDB, err := db.DB(); err != nil {
+		return
+	} else {
+		_ = sqlDB.Close()
+	}
+}
