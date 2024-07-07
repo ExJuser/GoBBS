@@ -3,11 +3,11 @@ package snowflake
 import (
 	"time"
 
-	"github.com/bwmarrin/snowflake"
+	sf "github.com/bwmarrin/snowflake"
 )
 
 // NewSnowflakeNode 新建一个 Snowflake 节点
-func NewSnowflakeNode(startTime string, machineID int64) (*snowflake.Node, error) {
+func NewSnowflakeNode(startTime string, machineID int64) (*sf.Node, error) {
 	var st time.Time
 	var err error
 
@@ -17,9 +17,9 @@ func NewSnowflakeNode(startTime string, machineID int64) (*snowflake.Node, error
 		return nil, err
 	}
 
-	snowflake.Epoch = st.UnixMilli()
+	sf.Epoch = st.UnixMilli()
 	// 新建一个节点
-	node, err := snowflake.NewNode(machineID)
+	node, err := sf.NewNode(machineID)
 	if err != nil {
 		return nil, err
 	}
@@ -27,6 +27,6 @@ func NewSnowflakeNode(startTime string, machineID int64) (*snowflake.Node, error
 }
 
 // GenerateID 生成唯一 ID
-func GenerateID(node *snowflake.Node) int64 {
+func GenerateID(node *sf.Node) int64 {
 	return node.Generate().Int64()
 }

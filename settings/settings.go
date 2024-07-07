@@ -25,7 +25,7 @@ type MySQLConfig struct {
 	Host         string `mapstructure:"host"`
 	User         string `mapstructure:"user"`
 	Password     string `mapstructure:"password"`
-	DB           string `mapstructure:"dbname"`
+	Dbname       string `mapstructure:"Dbname"`
 	Port         int    `mapstructure:"port"`
 	MaxOpenConns int    `mapstructure:"max_open_conns"`
 	MaxIdleConns int    `mapstructure:"max_idle_conns"`
@@ -48,10 +48,10 @@ type LogConfig struct {
 	MaxBackups int    `mapstructure:"max_backups"`
 }
 
-func Init(filePath string) {
+func Init(filePath string) (err error) {
 	viper.SetConfigFile(filePath)
 
-	err := viper.ReadInConfig()
+	err = viper.ReadInConfig()
 	if err != nil {
 		fmt.Printf("viper.ReadInConfig failed, err:%v\n", err)
 		return
