@@ -70,3 +70,9 @@
 {"level":"INFO","time":"2024-07-07T21:14:45.282+0800","caller":"logger/logger.go:31","msg":"init logger success"}
 {"level":"ERROR","time":"2024-07-07T21:14:47.058+0800","caller":"controller/user.go:35","msg":"signup failed,err:","error":"用户已存在"}
 {"level":"INFO","time":"2024-07-07T21:14:47.058+0800","caller":"logger/logger.go:68","msg":"/signup","status":200,"method":"POST","path":"/signup","query":"","ip":"::1","user-agent":"PostmanRuntime/7.37.3","errors":"","cost":0.0227404}
+{"level":"INFO","time":"2024-07-07T21:37:13.219+0800","caller":"logger/logger.go:40","msg":"init logger success"}
+{"level":"ERROR","time":"2024-07-07T21:37:18.643+0800","caller":"controller/user.go:18","msg":"SignUp with invalid param","error":"Key: 'ParamSignUp.RePassword' Error:Field validation for 'RePassword' failed on the 'eqfield' tag"}
+{"level":"INFO","time":"2024-07-07T21:37:18.643+0800","caller":"logger/logger.go:77","msg":"/signup","status":200,"method":"POST","path":"/signup","query":"","ip":"::1","user-agent":"PostmanRuntime/7.37.3","errors":"","cost":0.0005252}
+{"level":"INFO","time":"2024-07-07T21:41:57.575+0800","caller":"logger/logger.go:40","msg":"init logger success"}
+{"level":"INFO","time":"2024-07-07T21:42:12.730+0800","caller":"logger/logger.go:40","msg":"init logger success"}
+{"level":"INFO","time":"2024-07-07T21:43:05.398+0800","caller":"logger/logger.go:40","msg":"init logger success"}
