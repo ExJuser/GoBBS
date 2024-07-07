@@ -3,6 +3,7 @@ package main
 import (
 	"GoBBS/dao/mysql"
 	"GoBBS/dao/redis"
+	"GoBBS/logger"
 	setting "GoBBS/settings"
 	"fmt"
 	"os"
@@ -17,6 +18,11 @@ func main() {
 		fmt.Printf("load config failed, err:%v\n", err)
 		return
 	}
+	if err := logger.Init(setting.Conf.LogConfig); err != nil {
+		fmt.Printf("init logger failed, err:%v\n", err)
+		return
+	}
+
 	if err := mysql.Init(setting.Conf.MySQLConfig); err != nil {
 		fmt.Printf("init mysql failed, err:%v\n", err)
 		return
