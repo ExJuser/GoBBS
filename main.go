@@ -2,6 +2,7 @@ package main
 
 import (
 	"GoBBS/dao/mysql"
+	"GoBBS/dao/redis"
 	setting "GoBBS/settings"
 	"fmt"
 	"os"
@@ -18,6 +19,10 @@ func main() {
 	}
 	if err := mysql.Init(setting.Conf.MySQLConfig); err != nil {
 		fmt.Printf("init mysql failed, err:%v\n", err)
+		return
+	}
+	if err := redis.Init(setting.Conf.RedisConfig); err != nil {
+		fmt.Printf("init redis failed, err:%v\n", err)
 		return
 	}
 }
