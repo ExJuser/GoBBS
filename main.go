@@ -57,6 +57,7 @@ func main() {
 		return
 	}
 
+	//初始化参数校验翻译器
 	if err := controller.InitTrans("zh"); err != nil {
 		fmt.Printf("init validator trans failed, err:%v\n", err)
 		return

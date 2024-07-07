@@ -45,3 +45,28 @@
 {"level":"INFO","time":"2024-07-07T20:12:45.897+0800","caller":"logger/logger.go:31","msg":"init logger success"}
 {"level":"ERROR","time":"2024-07-07T20:12:47.902+0800","caller":"controller/user.go:21","msg":"SignUp with invalid param","error":"Key: 'ParamSignUp.RePassword' Error:Field validation for 'RePassword' failed on the 'eqfield' tag"}
 {"level":"INFO","time":"2024-07-07T20:12:47.902+0800","caller":"logger/logger.go:68","msg":"/signup","status":200,"method":"POST","path":"/signup","query":"","ip":"::1","user-agent":"PostmanRuntime/7.37.3","errors":"","cost":0}
+{"level":"INFO","time":"2024-07-07T20:30:07.284+0800","caller":"logger/logger.go:31","msg":"init logger success"}
+{"level":"ERROR","time":"2024-07-07T20:30:23.981+0800","caller":"controller/user.go:18","msg":"SignUp with invalid param","error":"Key: 'ParamSignUp.RePassword' Error:Field validation for 'RePassword' failed on the 'eqfield' tag"}
+{"level":"INFO","time":"2024-07-07T20:30:23.981+0800","caller":"logger/logger.go:68","msg":"/signup","status":200,"method":"POST","path":"/signup","query":"","ip":"::1","user-agent":"PostmanRuntime/7.37.3","errors":"","cost":0.0005163}
+{"level":"INFO","time":"2024-07-07T20:30:27.200+0800","caller":"logger/logger.go:68","msg":"/signup","status":200,"method":"POST","path":"/signup","query":"","ip":"::1","user-agent":"PostmanRuntime/7.37.3","errors":"","cost":0.0614568}
+{"level":"INFO","time":"2024-07-07T20:52:25.195+0800","caller":"logger/logger.go:31","msg":"init logger success"}
+{"level":"ERROR","time":"2024-07-07T20:52:43.901+0800","caller":"controller/user.go:18","msg":"SignUp with invalid param","error":"Key: 'ParamSignUp.RePassword' Error:Field validation for 'RePassword' failed on the 'eqfield' tag"}
+{"level":"INFO","time":"2024-07-07T20:52:43.901+0800","caller":"logger/logger.go:68","msg":"/signup","status":200,"method":"POST","path":"/signup","query":"","ip":"::1","user-agent":"PostmanRuntime/7.37.3","errors":"","cost":0.0001846}
+{"level":"INFO","time":"2024-07-07T20:53:12.817+0800","caller":"logger/logger.go:68","msg":"/signup","status":200,"method":"POST","path":"/signup","query":"","ip":"::1","user-agent":"PostmanRuntime/7.37.3","errors":"","cost":0.0224496}
+{"level":"INFO","time":"2024-07-07T20:54:37.426+0800","caller":"logger/logger.go:68","msg":"/signup","status":200,"method":"POST","path":"/signup","query":"","ip":"::1","user-agent":"PostmanRuntime/7.37.3","errors":"","cost":0.0237722}
+{"level":"INFO","time":"2024-07-07T20:59:13.023+0800","caller":"logger/logger.go:31","msg":"init logger success"}
+{"level":"INFO","time":"2024-07-07T21:00:00.673+0800","caller":"logger/logger.go:31","msg":"init logger success"}
+{"level":"INFO","time":"2024-07-07T21:01:56.678+0800","caller":"logger/logger.go:31","msg":"init logger success"}
+{"level":"INFO","time":"2024-07-07T21:02:06.664+0800","caller":"logger/logger.go:31","msg":"init logger success"}
+{"level":"INFO","time":"2024-07-07T21:02:24.419+0800","caller":"logger/logger.go:68","msg":"/signup","status":200,"method":"POST","path":"/signup","query":"","ip":"::1","user-agent":"PostmanRuntime/7.37.3","errors":"","cost":14.3324171}
+{"level":"INFO","time":"2024-07-07T21:02:25.548+0800","caller":"logger/logger.go:31","msg":"init logger success"}
+{"level":"INFO","time":"2024-07-07T21:04:21.110+0800","caller":"logger/logger.go:68","msg":"/signup","status":200,"method":"POST","path":"/signup","query":"","ip":"::1","user-agent":"PostmanRuntime/7.37.3","errors":"","cost":110.3093585}
+{"level":"INFO","time":"2024-07-07T21:05:26.218+0800","caller":"logger/logger.go:31","msg":"init logger success"}
+{"level":"INFO","time":"2024-07-07T21:05:34.922+0800","caller":"logger/logger.go:31","msg":"init logger success"}
+{"level":"INFO","time":"2024-07-07T21:06:42.678+0800","caller":"logger/logger.go:68","msg":"/signup","status":200,"method":"POST","path":"/signup","query":"","ip":"::1","user-agent":"PostmanRuntime/7.37.3","errors":"","cost":52.5219846}
+{"level":"INFO","time":"2024-07-07T21:13:52.592+0800","caller":"logger/logger.go:31","msg":"init logger success"}
+{"level":"ERROR","time":"2024-07-07T21:14:00.243+0800","caller":"controller/user.go:35","msg":"signup failed,err:","error":"用户已存在"}
+{"level":"INFO","time":"2024-07-07T21:14:00.243+0800","caller":"logger/logger.go:68","msg":"/signup","status":200,"method":"POST","path":"/signup","query":"","ip":"::1","user-agent":"PostmanRuntime/7.37.3","errors":"","cost":0.0252152}
+{"level":"INFO","time":"2024-07-07T21:14:45.282+0800","caller":"logger/logger.go:31","msg":"init logger success"}
+{"level":"ERROR","time":"2024-07-07T21:14:47.058+0800","caller":"controller/user.go:35","msg":"signup failed,err:","error":"用户已存在"}
+{"level":"INFO","time":"2024-07-07T21:14:47.058+0800","caller":"logger/logger.go:68","msg":"/signup","status":200,"method":"POST","path":"/signup","query":"","ip":"::1","user-agent":"PostmanRuntime/7.37.3","errors":"","cost":0.0227404}
