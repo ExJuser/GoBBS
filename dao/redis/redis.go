@@ -5,7 +5,6 @@ import (
 	"context"
 	"fmt"
 	"github.com/redis/go-redis/v9"
-	"go.uber.org/zap"
 )
 
 var rdb *redis.Client
@@ -19,7 +18,6 @@ func Init(config *setting.RedisConfig) (err error) {
 		MinIdleConns: config.MinIdleConns,
 	})
 	if _, err = rdb.Ping(context.Background()).Result(); err != nil {
-		zap.L().Error("fail to connect to redis", zap.Error(err))
 		return
 	}
 	return
