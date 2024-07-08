@@ -1,6 +1,7 @@
 package controller
 
 import (
+	"GoBBS/dao/mysql"
 	"GoBBS/logic"
 	"GoBBS/models"
 	"github.com/gin-gonic/gin"
@@ -21,13 +22,12 @@ func SignUpHandler(context *gin.Context) {
 			context.JSON(http.StatusOK, gin.H{
 				"msg": err.Error(),
 			})
+			ResponseError(context, CodeInvalidParam)
 			return
 		}
-		context.JSON(http.StatusOK, gin.H{
-			//可选项：去掉提示信息中的前缀 ParamSignUp
-			//"ParamSignUp.re_password": "re_password为必填字段"
-			"msg": removeTopStruct(errs.Translate(trans)),
-		})
+		//可选项：去掉提示信息中的前缀 ParamSignUp
+		//"ParamSignUp.re_password": "re_password为必填字段"
+		ResponseErrorWithMsg(context, CodeInvalidPassword, removeTopStruct(errs.Translate(trans)))
 		return
 	}
 	//业务处理
@@ -36,12 +36,15 @@ func SignUpHandler(context *gin.Context) {
 		context.JSON(http.StatusOK, gin.H{
 			"msg": err.Error(),
 		})
+		if errors.Is(err, mysql.ErrUserExist) {
+			ResponseError(context, CodeUserExist)
+			return
+		}
+		ResponseError(context, CodeServerBusy)
 		return
 	}
 	//返回响应
-	context.JSON(http.StatusOK, gin.H{
-		"msg": "success",
-	})
+	ResponseSuccess(context, nil)
 }
 
 func LoginHandler(context *gin.Context) {
@@ -54,22 +57,21 @@ func LoginHandler(context *gin.Context) {
 			context.JSON(http.StatusOK, gin.H{
 				"msg": err.Error(),
 			})
+			ResponseError(context, CodeInvalidPassword)
 			return
 		}
-		context.JSON(http.StatusOK, gin.H{
-			"msg": removeTopStruct(errs.Translate(trans)),
-		})
+		ResponseErrorWithMsg(context, CodeInvalidParam, removeTopStruct(errs.Translate(trans)))
 	}
 	//业务逻辑处理
 	if err := logic.Login(p); err != nil {
 		zap.L().Error("login failed,err:", zap.String("username", p.Username), zap.Error(err))
-		context.JSON(http.StatusOK, gin.H{
-			"msg": "用户名或密码错误",
-		})
+		if errors.Is(err, mysql.ErrUserNotExist) {
+			ResponseError(context, CodeUserNotExist)
+			return
+		}
+		ResponseError(context, CodeInvalidPassword)
 		return
 	}
 	//返回响应
-	context.JSON(http.StatusOK, gin.H{
-		"msg": "登陆成功",
-	})
+	ResponseSuccess(context, nil)
 }

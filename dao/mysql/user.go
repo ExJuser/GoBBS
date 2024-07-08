@@ -10,6 +10,12 @@ import (
 
 //把每一步数据库操作封装成函数 等待logic业务层根据业务需求调用
 
+var (
+	ErrUserExist       = errors.New("用户已存在")
+	ErrUserNotExist    = errors.New("用户名不存在")
+	ErrInvalidPassword = errors.New("密码错误")
+)
+
 const secret = "zhuchenchen.top"
 
 // CheckUserExist 检查指定用户名的用户是否存在
@@ -19,7 +25,7 @@ func CheckUserExist(username string) (err error) {
 		return tx.Error
 	}
 	if userCount > 0 {
-		return errors.New("用户已存在")
+		return ErrUserExist
 	}
 	return
 }
@@ -36,7 +42,7 @@ func Login(user *models.User) (err error) {
 	oPassword := user.Password //用户传入的明文密码
 	if tx := db.Where("username", user.Username).First(user); tx.Error != nil {
 		if errors.Is(tx.Error, gorm.ErrRecordNotFound) {
-			return errors.New("用户名不存在") //用户不存在错误
+			return ErrUserNotExist //用户不存在错误
 		}
 		//其他数据库错误
 		return tx.Error
@@ -44,7 +50,7 @@ func Login(user *models.User) (err error) {
 	password := encryptPassword(oPassword)
 	//user.Password 从数据库查出来的加密后的密码
 	if password != user.Password {
-		return errors.New("密码错误") //密码不正确的错误
+		return ErrInvalidPassword //密码不正确的错误
 	}
 	return
 }
