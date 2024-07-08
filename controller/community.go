@@ -4,6 +4,7 @@ import (
 	"GoBBS/logic"
 	"github.com/gin-gonic/gin"
 	"go.uber.org/zap"
+	"strconv"
 )
 
 func CommunityHandler(context *gin.Context) {
@@ -15,4 +16,20 @@ func CommunityHandler(context *gin.Context) {
 		return
 	}
 	ResponseSuccess(context, data)
+}
+
+func CommunityDetailHandler(context *gin.Context) {
+	idStr := context.Param("id")
+	id, err := strconv.ParseInt(idStr, 10, 64)
+	if err != nil {
+		ResponseError(context, CodeInvalidParam)
+		return
+	}
+	detail, err := logic.GetCommunityDetail(id)
+	if err != nil {
+		zap.L().Error("logic.GetCommunityDetail(id) failed", zap.Error(err))
+		ResponseError(context, CodeServerBusy)
+		return
+	}
+	ResponseSuccess(context, detail)
 }

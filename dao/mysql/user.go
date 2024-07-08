@@ -10,12 +10,6 @@ import (
 
 //把每一步数据库操作封装成函数 等待logic业务层根据业务需求调用
 
-var (
-	ErrUserExist       = errors.New("用户已存在")
-	ErrUserNotExist    = errors.New("用户名不存在")
-	ErrInvalidPassword = errors.New("密码错误")
-)
-
 const secret = "zhuchenchen.top"
 
 // CheckUserExist 检查指定用户名的用户是否存在

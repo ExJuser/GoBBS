@@ -40,3 +40,6 @@ INSERT INTO `community`
 VALUES ('3', '3', 'PUBG', '大吉大利，今晚吃鸡。', '2018-08-07 08:30:00', '2018-08-07 08:30:00');
 INSERT INTO `community`
 VALUES ('4', '4', 'LOL', '欢迎来到英雄联盟!', '2016-01-01 08:00:00', '2016-01-01 08:00:00');
+
+
+select community_id,community_name,introduction,create_time from community where community_id=1
