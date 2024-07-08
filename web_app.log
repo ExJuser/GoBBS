@@ -91,3 +91,15 @@
 {"level":"INFO","time":"2024-07-08T14:32:25.885+0800","caller":"logger/logger.go:77","msg":"/login","status":200,"method":"POST","path":"/login","query":"","ip":"::1","user-agent":"PostmanRuntime/7.39.0","errors":"","cost":41.0674461}
 {"level":"INFO","time":"2024-07-08T14:32:28.877+0800","caller":"logger/logger.go:40","msg":"init logger success"}
 {"level":"INFO","time":"2024-07-08T14:32:50.329+0800","caller":"logger/logger.go:77","msg":"/login","status":200,"method":"POST","path":"/login","query":"","ip":"::1","user-agent":"PostmanRuntime/7.39.0","errors":"","cost":19.2142134}
+{"level":"INFO","time":"2024-07-08T16:57:35.509+0800","caller":"logger/logger.go:40","msg":"init logger success"}
+{"level":"ERROR","time":"2024-07-08T16:57:38.052+0800","caller":"controller/user.go:68","msg":"login failed,err:","username":"chenchen1","error":"用户名不存在"}
+{"level":"INFO","time":"2024-07-08T16:57:38.052+0800","caller":"logger/logger.go:77","msg":"/login","status":200,"method":"POST","path":"/login","query":"","ip":"::1","user-agent":"PostmanRuntime/7.39.0","errors":"","cost":0.0229575}
+{"level":"ERROR","time":"2024-07-08T16:57:43.815+0800","caller":"controller/user.go:68","msg":"login failed,err:","username":"chenchen","error":"密码错误"}
+{"level":"INFO","time":"2024-07-08T16:57:43.815+0800","caller":"logger/logger.go:77","msg":"/login","status":200,"method":"POST","path":"/login","query":"","ip":"::1","user-agent":"PostmanRuntime/7.39.0","errors":"","cost":0.0247053}
+{"level":"INFO","time":"2024-07-08T16:57:46.669+0800","caller":"logger/logger.go:77","msg":"/login","status":200,"method":"POST","path":"/login","query":"","ip":"::1","user-agent":"PostmanRuntime/7.39.0","errors":"","cost":0.0236761}
+{"level":"INFO","time":"2024-07-08T17:05:20.710+0800","caller":"logger/logger.go:77","msg":"/ping","status":200,"method":"GET","path":"/ping","query":"","ip":"::1","user-agent":"PostmanRuntime/7.39.0","errors":"","cost":0}
+{"level":"INFO","time":"2024-07-08T19:10:11.652+0800","caller":"logger/logger.go:40","msg":"init logger success"}
+{"level":"INFO","time":"2024-07-08T19:10:16.204+0800","caller":"logger/logger.go:77","msg":"/ping","status":200,"method":"GET","path":"/ping","query":"","ip":"::1","user-agent":"PostmanRuntime/7.39.0","errors":"","cost":0}
+{"level":"INFO","time":"2024-07-08T19:11:02.871+0800","caller":"logger/logger.go:77","msg":"/login","status":404,"method":"GET","path":"/login","query":"","ip":"::1","user-agent":"PostmanRuntime/7.39.0","errors":"","cost":0}
+{"level":"INFO","time":"2024-07-08T19:11:31.038+0800","caller":"logger/logger.go:77","msg":"/login","status":200,"method":"POST","path":"/login","query":"","ip":"::1","user-agent":"PostmanRuntime/7.39.0","errors":"","cost":0.0295307}
+{"level":"INFO","time":"2024-07-08T19:11:48.717+0800","caller":"logger/logger.go:77","msg":"/ping","status":200,"method":"GET","path":"/ping","query":"","ip":"::1","user-agent":"PostmanRuntime/7.39.0","errors":"","cost":0.0002667}
