@@ -6,5 +6,5 @@
 - 数据库：MySQL、Redis
 - 配置文件管理：Viper https://github.com/spf13/viper
 - 日志：zap https://github.com/uber-go/zap
-- 鉴权：JWT
+- 鉴权：JWT https://github.com/golang-jwt/jwt
 - 参数校验：validator https://github.com/go-playground/validator
