@@ -16,10 +16,8 @@ func Setup(mode string) *gin.Engine {
 
 	//注册业务路由
 	r.POST("/signup", controller.SignUpHandler)
+	r.POST("/login", controller.LoginHandler)
 
-	r.GET("/", func(context *gin.Context) {
-		context.String(http.StatusOK, "Hello World!")
-	})
 	r.NoRoute(func(context *gin.Context) {
 		context.JSON(http.StatusNotFound, gin.H{
 			"msg": "404",
