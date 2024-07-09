@@ -243,3 +243,29 @@
 {"level":"INFO","time":"2024-07-09T00:15:34.093+0800","caller":"logger/logger.go:77","msg":"/api/v1/community/1","status":200,"method":"GET","path":"/api/v1/community/1","query":"","ip":"::1","user-agent":"PostmanRuntime/7.39.0","errors":"","cost":0.022945}
 {"level":"INFO","time":"2024-07-09T00:15:36.426+0800","caller":"logger/logger.go:77","msg":"/api/v1/community/4","status":200,"method":"GET","path":"/api/v1/community/4","query":"","ip":"::1","user-agent":"PostmanRuntime/7.39.0","errors":"","cost":0.0231231}
 {"level":"INFO","time":"2024-07-09T00:15:38.481+0800","caller":"logger/logger.go:77","msg":"/api/v1/community/3","status":200,"method":"GET","path":"/api/v1/community/3","query":"","ip":"::1","user-agent":"PostmanRuntime/7.39.0","errors":"","cost":0.0226814}
+{"level":"INFO","time":"2024-07-09T00:21:13.206+0800","caller":"logger/logger.go:40","msg":"init logger success"}
+{"level":"INFO","time":"2024-07-09T00:21:17.626+0800","caller":"logger/logger.go:77","msg":"/api/v1/community/daw","status":200,"method":"GET","path":"/api/v1/community/daw","query":"","ip":"::1","user-agent":"PostmanRuntime/7.39.0","errors":"","cost":0}
+{"level":"ERROR","time":"2024-07-09T00:21:23.991+0800","caller":"controller/community.go:30","msg":"logic.GetCommunityDetail(id) failed","error":"无效的ID"}
+{"level":"INFO","time":"2024-07-09T00:21:23.991+0800","caller":"logger/logger.go:77","msg":"/api/v1/community/444","status":200,"method":"GET","path":"/api/v1/community/444","query":"","ip":"::1","user-agent":"PostmanRuntime/7.39.0","errors":"","cost":0.0244678}
+{"level":"INFO","time":"2024-07-09T13:11:26.588+0800","caller":"logger/logger.go:40","msg":"init logger success"}
+{"level":"INFO","time":"2024-07-09T13:12:04.328+0800","caller":"logger/logger.go:77","msg":"/api/v1/login","status":200,"method":"POST","path":"/api/v1/login","query":"","ip":"::1","user-agent":"PostmanRuntime/7.39.0","errors":"","cost":0.0232317}
+{"level":"INFO","time":"2024-07-09T13:13:41.298+0800","caller":"logger/logger.go:77","msg":"/api/v1/post","status":200,"method":"POST","path":"/api/v1/post","query":"","ip":"::1","user-agent":"PostmanRuntime/7.39.0","errors":"","cost":0.0005229}
+{"level":"INFO","time":"2024-07-09T13:14:19.506+0800","caller":"logger/logger.go:77","msg":"/api/v1/post","status":200,"method":"POST","path":"/api/v1/post","query":"","ip":"::1","user-agent":"PostmanRuntime/7.39.0","errors":"","cost":0}
+{"level":"INFO","time":"2024-07-09T13:14:40.319+0800","caller":"logger/logger.go:77","msg":"/api/v1/post","status":200,"method":"POST","path":"/api/v1/post","query":"","ip":"::1","user-agent":"PostmanRuntime/7.39.0","errors":"","cost":0.0001098}
+{"level":"INFO","time":"2024-07-09T13:15:24.903+0800","caller":"logger/logger.go:40","msg":"init logger success"}
+{"level":"INFO","time":"2024-07-09T13:15:27.033+0800","caller":"logger/logger.go:77","msg":"/api/v1/post","status":200,"method":"POST","path":"/api/v1/post","query":"","ip":"::1","user-agent":"PostmanRuntime/7.39.0","errors":"","cost":0.001023}
+{"level":"INFO","time":"2024-07-09T13:18:38.345+0800","caller":"logger/logger.go:40","msg":"init logger success"}
+{"level":"INFO","time":"2024-07-09T13:19:06.757+0800","caller":"logger/logger.go:40","msg":"init logger success"}
+{"level":"INFO","time":"2024-07-09T13:19:17.250+0800","caller":"logger/logger.go:40","msg":"init logger success"}
+{"level":"INFO","time":"2024-07-09T13:20:10.620+0800","caller":"logger/logger.go:40","msg":"init logger success"}
+{"level":"INFO","time":"2024-07-09T13:20:17.865+0800","caller":"logger/logger.go:40","msg":"init logger success"}
+{"level":"INFO","time":"2024-07-09T13:21:13.717+0800","caller":"logger/logger.go:40","msg":"init logger success"}
+{"level":"INFO","time":"2024-07-09T13:22:47.643+0800","caller":"logger/logger.go:40","msg":"init logger success"}
+{"level":"INFO","time":"2024-07-09T13:27:22.902+0800","caller":"logger/logger.go:40","msg":"init logger success"}
+{"level":"ERROR","time":"2024-07-09T13:27:24.706+0800","caller":"controller/post.go:28","msg":"logic.CreatePost failed","error":"Error 1146 (42S02): Table 'gobbs.posts' doesn't exist"}
+{"level":"INFO","time":"2024-07-09T13:27:24.707+0800","caller":"logger/logger.go:77","msg":"/api/v1/post","status":200,"method":"POST","path":"/api/v1/post","query":"","ip":"::1","user-agent":"PostmanRuntime/7.39.0","errors":"","cost":0.0361277}
+{"level":"INFO","time":"2024-07-09T13:28:06.879+0800","caller":"logger/logger.go:40","msg":"init logger success"}
+{"level":"ERROR","time":"2024-07-09T13:28:08.742+0800","caller":"controller/post.go:28","msg":"logic.CreatePost failed","error":"Error 1292 (22007): Incorrect datetime value: '0000-00-00' for column 'create_time' at row 1"}
+{"level":"INFO","time":"2024-07-09T13:28:08.742+0800","caller":"logger/logger.go:77","msg":"/api/v1/post","status":200,"method":"POST","path":"/api/v1/post","query":"","ip":"::1","user-agent":"PostmanRuntime/7.39.0","errors":"","cost":0.0481994}
+{"level":"INFO","time":"2024-07-09T13:29:08.480+0800","caller":"logger/logger.go:40","msg":"init logger success"}
+{"level":"INFO","time":"2024-07-09T13:29:10.164+0800","caller":"logger/logger.go:77","msg":"/api/v1/post","status":200,"method":"POST","path":"/api/v1/post","query":"","ip":"::1","user-agent":"PostmanRuntime/7.39.0","errors":"","cost":0.0545112}
