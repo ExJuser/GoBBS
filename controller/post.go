@@ -5,6 +5,7 @@ import (
 	"GoBBS/models"
 	"github.com/gin-gonic/gin"
 	"go.uber.org/zap"
+	"strconv"
 	"time"
 )
 
@@ -32,4 +33,21 @@ func CreatePostHandler(context *gin.Context) {
 		return
 	}
 	ResponseSuccess(context, nil)
+}
+
+func GetPostDetailHandler(context *gin.Context) {
+	postIDStr := context.Param("id")
+	postID, err := strconv.ParseInt(postIDStr, 10, 64)
+	if err != nil {
+		zap.L().Error("get post with invalid param", zap.Error(err))
+		ResponseError(context, CodeInvalidPassword)
+		return
+	}
+	data, err := logic.GetPostByID(postID)
+	if err != nil {
+		zap.L().Error("logic.GetPostByID(postID) failed", zap.Error(err))
+		ResponseError(context, CodeServerBusy)
+		return
+	}
+	ResponseSuccess(context, data)
 }
