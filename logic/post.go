@@ -2,6 +2,7 @@ package logic
 
 import (
 	"GoBBS/dao/mysql"
+	"GoBBS/dao/redis"
 	"GoBBS/models"
 	"GoBBS/pkg/snowflake"
 	"go.uber.org/zap"
@@ -10,7 +11,10 @@ import (
 func CreatePost(post *models.Post) (err error) {
 	//生成post的id
 	post.ID = snowflake.GenID()
-	return mysql.CreatePost(post)
+	if err = mysql.CreatePost(post); err != nil {
+		return
+	}
+	return redis.CreatePost(post.ID, post.CreateTime)
 }
 
 func GetPostByID(postID int64) (data *models.APIPostDetail, err error) {
