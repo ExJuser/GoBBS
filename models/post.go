@@ -5,9 +5,9 @@ import (
 )
 
 type Post struct {
-	ID          int64     `json:"id" gorm:"column:post_id;not null"`
-	AuthorID    int64     `json:"author_id" gorm:"not null"`
-	CommunityID int64     `json:"community_id" gorm:"not null" binding:"required"`
+	ID          int64     `json:"id,string" gorm:"column:post_id;not null"`
+	AuthorID    int64     `json:"author_id,string" gorm:"not null"`
+	CommunityID int64     `json:"community_id,string" gorm:"not null" binding:"required"`
 	Status      int32     `json:"status" gorm:"not null"`
 	Title       string    `json:"title" gorm:"not null" binding:"required"`
 	Content     string    `json:"content" gorm:"not null" binding:"required"`

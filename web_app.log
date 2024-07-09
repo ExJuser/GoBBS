@@ -317,3 +317,5 @@
 {"level":"INFO","time":"2024-07-09T15:49:21.708+0800","caller":"logger/logger.go:77","msg":"/api/v1/posts","status":200,"method":"GET","path":"/api/v1/posts","query":"size=1&page=3","ip":"::1","user-agent":"PostmanRuntime/7.39.0","errors":"","cost":0.0222631}
 {"level":"INFO","time":"2024-07-09T15:52:08.473+0800","caller":"logger/logger.go:40","msg":"init logger success"}
 {"level":"INFO","time":"2024-07-09T15:52:11.730+0800","caller":"logger/logger.go:77","msg":"/api/v1/posts","status":200,"method":"GET","path":"/api/v1/posts","query":"size=1&page=2","ip":"::1","user-agent":"PostmanRuntime/7.39.0","errors":"","cost":0.0665018}
+{"level":"INFO","time":"2024-07-09T18:35:11.904+0800","caller":"logger/logger.go:40","msg":"init logger success"}
+{"level":"INFO","time":"2024-07-09T18:35:14.023+0800","caller":"logger/logger.go:77","msg":"/api/v1/login","status":200,"method":"POST","path":"/api/v1/login","query":"","ip":"::1","user-agent":"PostmanRuntime/7.40.0","errors":"","cost":0.0253986}

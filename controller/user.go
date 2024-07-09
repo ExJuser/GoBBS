@@ -63,7 +63,7 @@ func LoginHandler(context *gin.Context) {
 		ResponseErrorWithMsg(context, CodeInvalidParam, removeTopStruct(errs.Translate(trans)))
 	}
 	//业务逻辑处理
-	token, err := logic.Login(p)
+	user, err := logic.Login(p)
 	if err != nil {
 		zap.L().Error("login failed,err:", zap.String("username", p.Username), zap.Error(err))
 		if errors.Is(err, mysql.ErrUserNotExist) {
@@ -74,5 +74,9 @@ func LoginHandler(context *gin.Context) {
 		return
 	}
 	//返回响应
-	ResponseSuccess(context, token)
+	ResponseSuccess(context, gin.H{
+		"user_id":   user.UserID,
+		"user_name": user.Username,
+		"token":     user.Token,
+	})
 }
