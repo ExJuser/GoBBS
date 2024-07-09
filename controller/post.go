@@ -51,3 +51,14 @@ func GetPostDetailHandler(context *gin.Context) {
 	}
 	ResponseSuccess(context, data)
 }
+
+func GetPostListHandler(context *gin.Context) {
+	page, size := getPageInfo(context)
+	data, err := logic.GetPostList(page, size)
+	if err != nil {
+		zap.L().Error("logic.GetPostList() failed", zap.Error(err))
+		ResponseError(context, CodeServerBusy)
+		return
+	}
+	ResponseSuccess(context, data)
+}

@@ -14,3 +14,9 @@ func GetPostByID(postID int64) (*models.Post, error) {
 	tx := db.Where("post_id=?", postID).First(&post)
 	return post, tx.Error
 }
+
+func GetPostList(page, size int64) ([]*models.Post, error) {
+	posts := make([]*models.Post, 0, size)
+	tx := db.Raw("select * from post limit ?,?", (page-1)*size, size).Scan(&posts)
+	return posts, tx.Error
+}
