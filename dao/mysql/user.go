@@ -54,3 +54,11 @@ func encryptPassword(oPassword string) string {
 	hash.Write([]byte(secret))
 	return hex.EncodeToString(hash.Sum([]byte(oPassword)))
 }
+
+func GetUserByID(userID int64) (user *models.User, err error) {
+	tx := db.Where("user_id=?", userID).First(&user)
+	if tx.Error != nil {
+		return nil, tx.Error
+	}
+	return
+}
