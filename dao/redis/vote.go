@@ -15,6 +15,7 @@ const (
 
 var (
 	ErrVoteTimeExpire = errors.New("投票时间已过")
+	ErrVoteRepeated   = errors.New("不允许重复投票")
 )
 
 func CreatePost(postID int64, createTime time.Time) error {
@@ -45,7 +46,9 @@ func VoteForPost(userID, postID int64, direction int8) (err error) {
 	//查询之前有没有投过票 没有为0 赞成为1
 	ov := rdb.ZScore(ctx, getRedisKey(KeyPostVotedZSetPF+postIDStr), userIDStr).Val()
 	pointsDiff := (float64(direction) - ov) * scorePerVote
-
+	if pointsDiff == 0 {
+		return ErrVoteRepeated
+	}
 	pipeline := rdb.TxPipeline()
 	pipeline.ZIncrBy(ctx, getRedisKey(KeyPostScoreZSet), pointsDiff, postIDStr)
 	if direction == 0 {

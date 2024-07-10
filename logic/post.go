@@ -44,6 +44,9 @@ func GetPostByID(postID int64) (data *models.APIPostDetail, err error) {
 
 func GetPostList(page, size int64) (postsDetails []*models.APIPostDetail, err error) {
 	posts, err := mysql.GetPostList(page, size)
+	if err != nil {
+		return
+	}
 	postsDetails = make([]*models.APIPostDetail, 0, len(posts))
 	for _, post := range posts {
 		community := &models.CommunityDetail{}
@@ -75,7 +78,11 @@ func GetPostList2(p *models.ParamPostList) (postsDetails []*models.APIPostDetail
 		return
 	}
 	posts, err := mysql.GetPostListByIDs(postIDs)
-	for _, post := range posts {
+	voteData, err := redis.GetPostVoteData(postIDs)
+	if err != nil {
+		return
+	}
+	for i, post := range posts {
 		community := &models.CommunityDetail{}
 		user := &models.User{}
 		if community, err = mysql.GetCommunityDetailByID(post.CommunityID); err != nil {
@@ -88,6 +95,7 @@ func GetPostList2(p *models.ParamPostList) (postsDetails []*models.APIPostDetail
 		}
 		postsDetails = append(postsDetails, &models.APIPostDetail{
 			AuthorName: user.Username,
+			VoteCount:  voteData[i],
 			Post:       post,
 			Community:  community,
 		})

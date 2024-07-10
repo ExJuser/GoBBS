@@ -21,6 +21,7 @@ func (Post) TableName() string {
 type APIPostDetail struct {
 	//还需要再返回作者信息
 	AuthorName string           `json:"author_name"`
+	VoteCount  int64            `json:"vote_count"`
 	Community  *CommunityDetail //社区信息
 	Post       *Post            //具体帖子信息
 }
