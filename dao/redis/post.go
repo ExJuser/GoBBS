@@ -44,11 +44,15 @@ func GetPostVoteData(postIDs []string) (data []int64, err error) {
 	return
 }
 
-func GetCommunityPostIDInOrder(communityID, page, size int64, orderKey string) ([]string, error) {
+func GetCommunityPostIDInOrder(p *models.ParamPostList) ([]string, error) {
 	ctx := context.Background()
-	key := orderKey + strconv.FormatInt(communityID, 10)
-	cKey := getRedisKey(KeyCommunitySetPF + strconv.FormatInt(communityID, 10))
-	if rdb.Exists(ctx, orderKey).Val() < 1 {
+	orderKey := getRedisKey(KeyPostTimeZSet)
+	if p.Order == models.OrderScore {
+		orderKey = getRedisKey(KeyPostScoreZSet)
+	}
+	key := orderKey + strconv.FormatInt(p.CommunityID, 10)
+	cKey := getRedisKey(KeyCommunitySetPF + strconv.FormatInt(p.CommunityID, 10))
+	if rdb.Exists(ctx, key).Val() < 1 {
 		pipeline := rdb.Pipeline()
 		pipeline.ZInterStore(ctx, key, &redis.ZStore{
 			Aggregate: "MAX",
@@ -60,5 +64,5 @@ func GetCommunityPostIDInOrder(communityID, page, size int64, orderKey string) (
 			return nil, err
 		}
 	}
-	return getIDsFromKey(key, page, size)
+	return getIDsFromKey(key, p.Page, p.Size)
 }

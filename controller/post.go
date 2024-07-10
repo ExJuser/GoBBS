@@ -76,31 +76,32 @@ func GetPostListHandler2(context *gin.Context) {
 		ResponseError(context, CodeInvalidParam)
 		return
 	}
-	data, err := logic.GetPostList2(&p)
+	data, err := logic.GetPostListNew(&p)
 	if err != nil {
-		zap.L().Error("logic.GetPostList2(&p) failed", zap.Error(err))
+		zap.L().Error("logic.GetPostListNew(&p)", zap.Error(err))
 		ResponseError(context, CodeServerBusy)
-		return
 	}
 	ResponseSuccess(context, data)
 }
 
-func GetCommunityPostListHandler(context *gin.Context) {
-	p := models.ParamCommunityPostList{
-		Page:  1,
-		Size:  10,
-		Order: models.OrderTime,
-	}
-	if err := context.ShouldBindQuery(&p); err != nil {
-		zap.L().Error("context.ShouldBindQuery(&p) failed", zap.Error(err))
-		ResponseError(context, CodeInvalidParam)
-		return
-	}
-	data, err := logic.GetCommunityPostList(&p)
-	if err != nil {
-		zap.L().Error("logic.GetCommunityPostList failed", zap.Error(err))
-		ResponseError(context, CodeServerBusy)
-		return
-	}
-	ResponseSuccess(context, data)
-}
+//func GetCommunityPostListHandler(context *gin.Context) {
+//	p := models.ParamCommunityPostList{
+//		ParamPostList: models.ParamPostList{
+//			Page:  1,
+//			Size:  10,
+//			Order: models.OrderTime,
+//		},
+//	}
+//	if err := context.ShouldBindQuery(&p); err != nil {
+//		zap.L().Error("context.ShouldBindQuery(&p) failed", zap.Error(err))
+//		ResponseError(context, CodeInvalidParam)
+//		return
+//	}
+//	data, err := logic.GetCommunityPostList(&p)
+//	if err != nil {
+//		zap.L().Error("logic.GetCommunityPostList failed", zap.Error(err))
+//		ResponseError(context, CodeServerBusy)
+//		return
+//	}
+//	ResponseSuccess(context, data)
+//}

@@ -18,7 +18,7 @@ var (
 	ErrVoteRepeated   = errors.New("不允许重复投票")
 )
 
-func CreatePost(postID int64, createTime time.Time) error {
+func CreatePost(postID int64, createTime time.Time, communityID int64) error {
 	pipeline := rdb.TxPipeline()
 	ctx := context.Background()
 	pipeline.ZAdd(ctx, getRedisKey(KeyPostTimeZSet), redis.Z{
@@ -30,6 +30,8 @@ func CreatePost(postID int64, createTime time.Time) error {
 		Score:  float64(createTime.Unix()),
 		Member: postID,
 	})
+	cKey := getRedisKey(KeyCommunitySetPF + strconv.FormatInt(communityID, 10))
+	pipeline.SAdd(ctx, cKey, postID)
 	_, err := pipeline.Exec(ctx)
 	return err
 }
