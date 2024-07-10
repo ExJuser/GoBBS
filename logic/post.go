@@ -64,3 +64,33 @@ func GetPostList(page, size int64) (postsDetails []*models.APIPostDetail, err er
 	}
 	return
 }
+
+func GetPostList2(p *models.ParamPostList) (postsDetails []*models.APIPostDetail, err error) {
+	postIDs, err := redis.GetPostIDInOrder(p)
+	if err != nil {
+		return
+	}
+	if len(postIDs) == 0 {
+		zap.L().Warn("redis.GetPostIDInOrder(p) returns 0 data")
+		return
+	}
+	posts, err := mysql.GetPostListByIDs(postIDs)
+	for _, post := range posts {
+		community := &models.CommunityDetail{}
+		user := &models.User{}
+		if community, err = mysql.GetCommunityDetailByID(post.CommunityID); err != nil {
+			zap.L().Error("mysql.GetCommunityDetailByID(post.CommunityID) failed", zap.Int64("post.CommunityID", post.CommunityID), zap.Error(err))
+			continue
+		}
+		if user, err = mysql.GetUserByID(post.AuthorID); err != nil {
+			zap.L().Error("mysql.GetUserByID(post.AuthorID)", zap.Int64("post.AuthorID", post.AuthorID), zap.Error(err))
+			continue
+		}
+		postsDetails = append(postsDetails, &models.APIPostDetail{
+			AuthorName: user.Username,
+			Post:       post,
+			Community:  community,
+		})
+	}
+	return
+}
