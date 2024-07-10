@@ -102,3 +102,7 @@ func GetPostList2(p *models.ParamPostList) (postsDetails []*models.APIPostDetail
 	}
 	return
 }
+
+func GetCommunityPostList(p *models.ParamCommunityPostList) (postsDetails []*models.APIPostDetail, err error) {
+	postIDs, err := redis.GetCommunityPostIDInOrder(p)
+}

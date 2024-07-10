@@ -4,19 +4,26 @@ import (
 	"GoBBS/models"
 	"context"
 	"github.com/redis/go-redis/v9"
+	"strconv"
+	"time"
 )
+
+func getIDsFromKey(key string, page, size int64) ([]string, error) {
+	ctx := context.Background()
+	start := (page - 1) * size
+	stop := start + size - 1
+	return rdb.ZRevRange(ctx, key, start, stop).Result()
+}
 
 func GetPostIDInOrder(p *models.ParamPostList) ([]string, error) {
 	var key string
-	ctx := context.Background()
+
 	if p.Order == models.OrderScore {
 		key = getRedisKey(KeyPostScoreZSet)
 	} else {
 		key = getRedisKey(KeyPostTimeZSet)
 	}
-	start := (p.Page - 1) * p.Size
-	stop := start + p.Size - 1
-	return rdb.ZRevRange(ctx, key, start, stop).Result()
+	return getIDsFromKey(key, p.Page, p.Size)
 }
 
 func GetPostVoteData(postIDs []string) (data []int64, err error) {
@@ -35,4 +42,23 @@ func GetPostVoteData(postIDs []string) (data []int64, err error) {
 		data = append(data, voteCount)
 	}
 	return
+}
+
+func GetCommunityPostIDInOrder(communityID, page, size int64, orderKey string) ([]string, error) {
+	ctx := context.Background()
+	key := orderKey + strconv.FormatInt(communityID, 10)
+	cKey := getRedisKey(KeyCommunitySetPF + strconv.FormatInt(communityID, 10))
+	if rdb.Exists(ctx, orderKey).Val() < 1 {
+		pipeline := rdb.Pipeline()
+		pipeline.ZInterStore(ctx, key, &redis.ZStore{
+			Aggregate: "MAX",
+			Keys:      []string{cKey, orderKey},
+		})
+		pipeline.Expire(ctx, key, time.Minute)
+		_, err := pipeline.Exec(ctx)
+		if err != nil {
+			return nil, err
+		}
+	}
+	return getIDsFromKey(key, page, size)
 }

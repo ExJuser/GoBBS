@@ -8,6 +8,7 @@ const (
 	KeyPostScoreZSet = "post:score"
 	// KeyPostVotedZSetPF 记录一个帖子都有谁投过票 需要继续拼接post_id
 	KeyPostVotedZSetPF = "post:voted:"
+	KeyCommunitySetPF  = "community:"
 )
 
 func getRedisKey(key string) string {
