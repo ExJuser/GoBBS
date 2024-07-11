@@ -21,7 +21,7 @@ func Setup(mode string) *gin.Engine {
 	//登录
 	v1.POST("/login", controller.LoginHandler)
 
-	v1.Use(middlewares.JWTAuthMiddleware())
+	//v1.Use(middlewares.JWTAuthMiddleware())
 
 	{
 		v1.GET("/community", controller.CommunityHandler)
