@@ -6,6 +6,7 @@ import (
 	"GoBBS/middlewares"
 	"github.com/gin-gonic/gin"
 	"net/http"
+	"time"
 )
 
 func Setup(mode string) *gin.Engine {
@@ -22,7 +23,7 @@ func Setup(mode string) *gin.Engine {
 	v1.POST("/login", controller.LoginHandler)
 
 	//v1.Use(middlewares.JWTAuthMiddleware())
-
+	v1.Use(middlewares.RateLimitMiddleware(time.Millisecond, 1))
 	{
 		v1.GET("/community", controller.CommunityHandler)
 		v1.GET("/community/:id", controller.CommunityDetailHandler)
