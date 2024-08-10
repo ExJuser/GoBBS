@@ -41,6 +41,7 @@ func Init(config *setting.LogConfig, mode string) (err error) {
 	return
 }
 
+// 自定义logger需要传入的组件：定义如何写入日志
 func getEncoder() zapcore.Encoder {
 	config := zap.NewProductionEncoderConfig()
 	//修改时间编码器为人类可读的形式
@@ -54,6 +55,7 @@ func getEncoder() zapcore.Encoder {
 	return zapcore.NewJSONEncoder(config)
 }
 
+// 自定义logger需要传入的组件：定义日志写到哪里
 func getLogWriter(filename string, maxSize, maxBackups, maxAge int) zapcore.WriteSyncer {
 	lumberJackLogger := &lumberjack.Logger{
 		Filename:   filename,

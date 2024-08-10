@@ -14,7 +14,7 @@ import (
 )
 
 func main() {
-	//从命令行获取配置文件
+	//从命令行获取配置文件名称
 	if len(os.Args) < 2 {
 		fmt.Println("need config file. eg: gobbs config.yaml")
 		return

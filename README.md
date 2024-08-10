@@ -10,4 +10,3 @@
 - 鉴权：JWT https://github.com/golang-jwt/jwt
 - 参数校验：validator https://github.com/go-playground/validator
 - 实时热重载：Air https://github.com/air-verse/air
-- 接口文档：Swag https://github.com/swaggo/swag

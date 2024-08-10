@@ -49,21 +49,20 @@ type RedisConfig struct {
 }
 
 func Init(filePath string) (err error) {
-	viper.SetConfigFile(filePath)
-
-	err = viper.ReadInConfig()
+	viper.SetConfigFile(filePath) //设置配置文件
+	err = viper.ReadInConfig()    //
 	if err != nil {
 		fmt.Printf("viper.ReadInConfig failed, err:%v\n", err)
 		return
 	}
-	if err = viper.Unmarshal(Conf); err != nil {
+	if err = viper.Unmarshal(Conf); err != nil { //将配置反序列化到本地结构体
 		fmt.Printf("viper.Unmarshal failed, err:%v\n", err)
 	}
 
-	viper.WatchConfig()
+	viper.WatchConfig() //监控配置文件的变化
 	viper.OnConfigChange(func(in fsnotify.Event) {
 		fmt.Println("configuration has been changed...")
-		if err = viper.Unmarshal(Conf); err != nil {
+		if err = viper.Unmarshal(Conf); err != nil { //当配置文件变化时出发回调函数：重新反序列化
 			fmt.Printf("viper.Unmarshal failed, err:%v\n", err)
 		}
 	})
